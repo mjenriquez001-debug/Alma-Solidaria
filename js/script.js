@@ -20,13 +20,68 @@ const dwmajo = [
 const dwmajoContainer = document.getElementById("Sectores-container");
 const filterButtons = document.querySelectorAll(".filter-btn");
 
-
 // Función para renderizar las tarjetas 
 function renderDw(genero) {
     let dwmajoToRender = [];
+
     if (genero === "all") {
         dwmajoToRender = dwmajo;
     } else {
-        dwmajoToRender = dwmajo.filter(dwmajo => dwmajo.genero === genero);
+        dwmajoToRender = dwmajo.filter(item => item.genero === genero);
     }
+
+    // Limpia el contenedor antes de renderizar
+    dwmajoContainer.innerHTML = '';
+
+    if (!dwmajoToRender || dwmajoToRender.length === 0) {
+        dwmajoContainer.innerHTML = '<p class="text-center w-100">No hay disponibles para esta categoría.</p>';
+        return;
+    }
+
+    // Crea y agrega las tarjetas
+    dwmajoToRender.forEach(item => {
+        const cardHtml = `
+            <figure class="proyecto-card" data-gender="${item.genero}">
+                <img src="${item.image}" alt="la fundación tiene los programas, nombre: ${item.name}">
+                <figcaption>
+                    ${item.name}
+                </figcaption>
+                <div class="card-description">
+                    <p>${item.description}</p>
+                </div>
+            </figure>
+        `;
+        dwmajoContainer.innerHTML += cardHtml;
+    });
 }
+
+// Agrega event listeners a los botones de filtro
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const genero = button.dataset.category;
+
+        // Remueve la clase 'active' de todos los botones
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        // Agrega la clase 'active' al botón clickeado
+        button.classList.add("active");
+
+        // Renderiza las tarjetas con el filtro seleccionado
+        renderDw(genero);
+    });
+});
+
+// Renderizar todos para cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+    renderDw('all');
+});
+
+
+// Función para el botón de volver al inicio
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+
