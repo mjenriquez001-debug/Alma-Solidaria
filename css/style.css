@@ -283,10 +283,14 @@
   }
   
   .column img {
-  border: 7px solid #251D82;
+  border: 4px solid #8e7b61;
   border-radius: 15px;
   }
 
+  .row {
+  background-color: #a38f7b;
+  padding: 10px;
+  }
 
   .row h3 {
   text-align: center;
@@ -300,6 +304,28 @@
   content: "";
   clear: both;
   display: table;
+  }
+
+  /* Aside para las convocatorias  y actividades */
+
+    .Próximas-Convocatorias {
+  text-align: center;
+  background-color: #A66D52;
+  padding: 50px 20px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  font-family: "Quicksand", sans-serif;
+  }
+  
+  .Próximas-Convocatorias h3 {
+  color: #333;
+  margin-bottom: 40px;
+  font-family: "Quicksand", sans-serif;
+  }
+  
+  .Próximas-Convocatorias p {
+  margin-bottom: 10px;
+  font-family: "Quicksand", sans-serif;
   }
 
    /* Pie de página (footer) */
